@@ -11,7 +11,7 @@ class App extends Component{
             gifs:[],
             selectedGifId: "dL6xIDsmaLdbpTgNrJ/giphy.gif?cid=ecf05e47uw500kcw8wltsjv3a4tm49g7klykumt4owmjscvd"
         };
-        this.search("");
+        this.search("covid");
     }
 
     search = (query) => {
@@ -30,10 +30,10 @@ class App extends Component{
     }
     
     render(){
-        // const gifs = [
-        //     { id: "WeVUkhNoz0anZSJEiK/100.gif?cid=ecf05e471cuvnkl22ri63fd7jcrb9ph62dgwtxl39srfhl5c"},
-        //     { id: "azHI5zpNIwTAe8vEIB/200w.gif?cid=ecf05e471cuvnkl22ri63fd7jcrb9ph62dgwtxl39srfhl5c"}
-        // ]
+        const gifs = [
+            { id: "WeVUkhNoz0anZSJEiK/100.gif?cid=ecf05e471cuvnkl22ri63fd7jcrb9ph62dgwtxl39srfhl5c"},
+            { id: "azHI5zpNIwTAe8vEIB/200w.gif?cid=ecf05e471cuvnkl22ri63fd7jcrb9ph62dgwtxl39srfhl5c"}
+        ]
         return (
             <div>
                 <div className="left-scene">
