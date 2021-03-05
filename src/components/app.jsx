@@ -1,31 +1,34 @@
 import React, { Component } from 'react';
-import giphy from 'giphy-api';
 import SearchBar from './search_bar';
 import Gif from './gif';
 import GifList from './gif_list';
+import giphy from 'giphy-api';
 
 class App extends Component{
     constructor(props){
         super(props);
-        this.state={
+        this.state = {
             gifs:[],
-            selectedGifId: "n9DSNUCmqHQE5bddkq/200.webp?cid=ecf05e47jdjzbozy2prgh21a7r7pfybbzpy7yoaz2dzcb8ay"
-        }
-        this.search("krista");
+            selectedGifId: "dL6xIDsmaLdbpTgNrJ/giphy.gif?cid=ecf05e47uw500kcw8wltsjv3a4tm49g7klykumt4owmjscvd"
+        };
+        this.search("");
     }
 
     search = (query) => {
         // API call
-        giphy('DZxD2QBgyQ2ZGnqkOs6bUiwtynovV7cP').search({
+        giphy('DZxD2QBgyQ2ZGnqkOs6bUiwtynovV7cP')
+        .search({
             q: query,
             rating: 'g',
             limit: 10
-        }, (error, result) => {
-            this.setState({
-                gifs: result.data
+        },
+            (error, result) => {
+                this.setState({
+                    gifs: result.data
             });
         });
     }
+    
     render(){
         // const gifs = [
         //     { id: "WeVUkhNoz0anZSJEiK/100.gif?cid=ecf05e471cuvnkl22ri63fd7jcrb9ph62dgwtxl39srfhl5c"},
