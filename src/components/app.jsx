@@ -4,6 +4,8 @@ import Gif from './gif';
 import GifList from './gif_list';
 import giphy from 'giphy-api';
 
+const GIPHY_API_KEY = 'DZxD2QBgyQ2ZGnqkOs6bUiwtynovV7cP';
+
 class App extends Component{
     constructor(props){
         super(props);
@@ -11,29 +13,28 @@ class App extends Component{
             gifs:[],
             selectedGifId: "dL6xIDsmaLdbpTgNrJ/giphy.gif?cid=ecf05e47uw500kcw8wltsjv3a4tm49g7klykumt4owmjscvd"
         };
-        this.search("covid");
+        this.search = this.search.bind(this);
+        this.selectGif = this.selectGif.bind(this);
     }
 
-    search = (query) => {
+    search(query) {
         // API call
-        giphy('DZxD2QBgyQ2ZGnqkOs6bUiwtynovV7cP')
-        .search({
-            q: query,
-            rating: 'g',
-            limit: 10
-        },
-            (error, result) => {
-                this.setState({
-                    gifs: result.data
-            });
+        const giphEndpoint = `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_API_KEY}&q=${query}&limit=10`
+        fetch(giphEndpoint).then(response => response.json()).then((data) => {
+            const gifs = data.data.map(giph => giph.id)
+            this.setState({
+                gifs: gifs
+            })
+        })
+    }
+
+    selectGif(id){
+        this.setState({
+            selectedGifId: id
         });
     }
     
     render(){
-        const gifs = [
-            { id: "WeVUkhNoz0anZSJEiK/100.gif?cid=ecf05e471cuvnkl22ri63fd7jcrb9ph62dgwtxl39srfhl5c"},
-            { id: "azHI5zpNIwTAe8vEIB/200w.gif?cid=ecf05e471cuvnkl22ri63fd7jcrb9ph62dgwtxl39srfhl5c"}
-        ]
         return (
             <div>
                 <div className="left-scene">
